@@ -1,0 +1,9 @@
+<project>
+ <properties scaleMode="1" iosDevice="0" xcodeVersion="0" packageName="com.yourdomain.yourapp" logicalHeight="480" logicalWidth="320" assetsOnly="0" orientation="1" architecture="0">
+  <imageScales/>
+ </properties>
+ <file file="main.lua"/>
+ <file file="json.lua"/>
+ <file file="createBox2dWorld.lua"/>
+ <file file="bridge.json"/>
+</project>
