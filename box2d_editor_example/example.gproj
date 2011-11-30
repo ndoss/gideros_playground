@@ -1,0 +1,13 @@
+<project>
+ <properties scaleMode="1" iosDevice="0" xcodeVersion="0" packageName="com.yourdomain.yourapp" logicalHeight="480" logicalWidth="320" assetsOnly="0" orientation="1" architecture="0">
+  <imageScales/>
+ </properties>
+ <folder name="gfx">
+  <file file="gfx/test03 (multi shapes).png"/>
+  <file file="gfx/test02 (non POT).png"/>
+  <file file="gfx/test01.png"/>
+ </folder>
+ <file file="json.lua"/>
+ <file file="main.lua"/>
+ <file file="bodies.json"/>
+</project>
