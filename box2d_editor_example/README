@@ -1,0 +1,17 @@
+
+Software used in this proof of concept:
+
+* Gideros Mobile (http://www.giderosmobile.com/)
+* JSON4Lua library (http://json.luaforge.net/)
+* Box2d-Editor (http://code.google.com/p/box2d-editor/)
+
+
+How to create a new json file and run it:
+
+* Create json project in box2d-editor, trace images, save json file
+* Edit main.lua to use the json file you just created, run project
+
+Issues:
+
+* Images don't align w/ box2d elements (uncomment code in main.lua to see)
+  Not sure what the right transform is.
