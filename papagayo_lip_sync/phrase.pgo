@@ -1,0 +1,45 @@
+lipsync version 1
+phrase.wav
+60
+258
+1
+	Voice 1
+	there once was a man from nantucket
+	1
+		there once was a man from nantucket
+		0
+		180
+		7
+			there 0 19 3
+				0 etc
+				7 E
+				13 etc
+			once 21 37 4
+				21 WQ
+				25 AI
+				30 etc
+				34 etc
+			was 40 55 3
+				40 WQ
+				45 AI
+				51 etc
+			a 56 64 1
+				56 AI
+			man 66 92 3
+				66 MBP
+				75 AI
+				84 etc
+			from 98 112 4
+				98 FV
+				102 etc
+				106 AI
+				109 MBP
+			nantucket 114 176 8
+				114 etc
+				122 AI
+				130 etc
+				138 etc
+				146 AI
+				153 etc
+				161 AI
+				169 etc

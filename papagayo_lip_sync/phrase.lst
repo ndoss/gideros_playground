@@ -1,0 +1,146 @@
+return {
+   version='lipsync version 1';
+   audioFile='phrase.mp3';
+   frameRate=60;
+   framesInFile=258;
+   {
+      voiceName='Voice 1';
+      text='there once was a man from nantucket';
+      {
+         text='there once was a man from nantucket';
+         frames = { 0, 180 };
+         {
+            text='there';
+            frames = { 0, 19 };
+            {
+               phoneme='etc';
+               startFrame=0;
+            },
+            {
+               phoneme='E';
+               startFrame=7;
+            },
+            {
+               phoneme='etc';
+               startFrame=13;
+            },
+         },
+         {
+            text='once';
+            frames = { 21, 37 };
+            {
+               phoneme='WQ';
+               startFrame=21;
+            },
+            {
+               phoneme='AI';
+               startFrame=25;
+            },
+            {
+               phoneme='etc';
+               startFrame=30;
+            },
+            {
+               phoneme='etc';
+               startFrame=34;
+            },
+         },
+         {
+            text='was';
+            frames = { 40, 55 };
+            {
+               phoneme='WQ';
+               startFrame=40;
+            },
+            {
+               phoneme='AI';
+               startFrame=45;
+            },
+            {
+               phoneme='etc';
+               startFrame=51;
+            },
+         },
+         {
+            text='a';
+            frames = { 56, 64 };
+            {
+               phoneme='AI';
+               startFrame=56;
+            },
+         },
+         {
+            text='man';
+            frames = { 66, 92 };
+            {
+               phoneme='MBP';
+               startFrame=66;
+            },
+            {
+               phoneme='AI';
+               startFrame=75;
+            },
+            {
+               phoneme='etc';
+               startFrame=84;
+            },
+         },
+         {
+            text='from';
+            frames = { 98, 112 };
+            {
+               phoneme='FV';
+               startFrame=98;
+            },
+            {
+               phoneme='etc';
+               startFrame=102;
+            },
+            {
+               phoneme='AI';
+               startFrame=106;
+            },
+            {
+               phoneme='MBP';
+               startFrame=109;
+            },
+         },
+         {
+            text='nantucket';
+            frames = { 114, 176 };
+            {
+               phoneme='etc';
+               startFrame=114;
+            },
+            {
+               phoneme='AI';
+               startFrame=122;
+            },
+            {
+               phoneme='etc';
+               startFrame=130;
+            },
+            {
+               phoneme='etc';
+               startFrame=138;
+            },
+            {
+               phoneme='AI';
+               startFrame=146;
+            },
+            {
+               phoneme='etc';
+               startFrame=153;
+            },
+            {
+               phoneme='AI';
+               startFrame=161;
+            },
+            {
+               phoneme='etc';
+               startFrame=169;
+            },
+         },
+      },
+   },
+}
