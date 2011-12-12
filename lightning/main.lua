@@ -13,10 +13,13 @@ local boltTime  = 500 -- ms
 local boltColor = 0xffff88
 local glowColor = 0xffffff
 local glowAlpha = 0.05
-local bgAdjust  = 0.3
+local bgAdjust  = 0.1
 
--- Lightning example
-stage:setBackgroundColor(0.0,0.0,0.0)
+-- Beach background
+stage:setBackgroundColor(0,0,0)
+bgImage = Bitmap.new(Texture.new("beach.jpg"))
+bgImage:setAlpha(bg)
+stage:addChild(bgImage)
 
 -- Draw lightning
 local function drawLightning(shape, x1, y1, x2, y2, displace)
@@ -49,7 +52,7 @@ end
 local function endLightning(shape)
    stage:removeChild(shape) 
    bg = bg - bgAdjust
-   stage:setBackgroundColor(bg,bg,bg)
+   bgImage:setAlpha(bg)
 end
 
 -- On mouse press, create a shape to hold the lightning, 
@@ -58,11 +61,11 @@ end
 local function onMouseDown(e)
    local shape = Shape.new()
    stage:addChild(shape)
-   local start = math.random(0,width) / 2
+   local start = math.random(0,application:getLogicalWidth())
    drawLightning(shape, start, 0, e.x, e.y, displace)
 
    bg = bg + bgAdjust
-   stage:setBackgroundColor(bg,bg,bg)
+   bgImage:setAlpha(bg)
 
    shape.timer = Timer.new(boltTime, 1)
    shape.timer:addEventListener(Event.TIMER, endLightning, shape)
