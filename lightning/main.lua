@@ -18,6 +18,7 @@ local bgAdjust  = 0.3
 -- Lightning example
 stage:setBackgroundColor(0.0,0.0,0.0)
 
+-- Draw lightning
 local function drawLightning(shape, x1, y1, x2, y2, displace)
    if displace < curDetail then
       
@@ -44,22 +45,29 @@ local function drawLightning(shape, x1, y1, x2, y2, displace)
    end
 end
 
+-- Function to stop the lightning and dim the background
 local function endLightning(shape)
    stage:removeChild(shape) 
    bg = bg - bgAdjust
    stage:setBackgroundColor(bg,bg,bg)
 end
 
-local width = application:getLogicalWidth()
+-- On mouse press, create a shape to hold the lightning, 
+--   draw lightning, brighten background, and set up 
+--   timer to stop the lightning
 local function onMouseDown(e)
    local shape = Shape.new()
    stage:addChild(shape)
-   drawLightning(shape, math.random(0,width), 0, e.x, e.y, displace)
+   local start = math.random(0,width) / 2
+   drawLightning(shape, start, 0, e.x, e.y, displace)
+
    bg = bg + bgAdjust
    stage:setBackgroundColor(bg,bg,bg)
+
    shape.timer = Timer.new(boltTime, 1)
    shape.timer:addEventListener(Event.TIMER, endLightning, shape)
    shape.timer:start()
 end
 
+-- Clicking the mouse will start a lightning bolt
 stage:addEventListener(Event.MOUSE_DOWN, onMouseDown)
