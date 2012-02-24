@@ -1,3 +1,5 @@
+# License - http://creativecommons.org/publicdomain/zero/1.0/
+
 #!/usr/bin/perl
 use strict;
 

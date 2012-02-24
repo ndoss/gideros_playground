@@ -1,4 +1,5 @@
--- License:  MIT
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
+
 require("box2d")
 
 -- ------------------------------------------------------------------------------------

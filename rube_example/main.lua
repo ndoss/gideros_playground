@@ -1,3 +1,4 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
 
 stage:setBackgroundColor(0,0,0)
 local sprite = Shape.new()

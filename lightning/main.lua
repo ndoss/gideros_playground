@@ -1,3 +1,5 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
+
 -- Adapted from:
 -- http://www.krazydad.com/bestiary/bestiary_lightning.html
 -- http://developer.anscamobile.com/code/jake-gundersen

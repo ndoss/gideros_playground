@@ -1,3 +1,4 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
 
 -- Create a table w/ bitmaps for each phoneme type
 function createMouth()
