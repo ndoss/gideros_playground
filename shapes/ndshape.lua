@@ -1,8 +1,6 @@
--- License - http://creativecommons.org/publicdomain/zero/1.0/
-
 --[[ ==============================================================================
 TODO
-  - add rounded rectangle - why are rounded rects jagged?
+  - add rounded rectangle to class - why are rounded rects jagged?
   - make sure currentpoint and firstpoint are always set when drawing
   - add comments/documentation
   - add examples
