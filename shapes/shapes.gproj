@@ -3,6 +3,5 @@
   <imageScales/>
  </properties>
  <file source="ndshape.lua"/>
- <file source="vector.lua"/>
  <file source="main.lua"/>
 </project>
