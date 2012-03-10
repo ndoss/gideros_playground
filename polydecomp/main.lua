@@ -1,3 +1,5 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
+
 
 -- Change this to set how much simplification is done
 delta = 50      --  1e-6 = very little simplification,  200 = lots of simplification

@@ -1,3 +1,5 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
+
 -- --------------------------------------------------------------------------------
 -- EasyPolygon
 -- --------------------------------------------------------------------------------
@@ -34,7 +36,6 @@ function EasyPolygon:init(ebox, t)
    for i=1,#v do
       self.shapes[i] = b2.PolygonShape.new()
       self.shapes[i]:set(unpack(v[i]))
-      --self.shapes[i]:set(183/30,130/30, 246/30,128/30, 244/30,184/30, 224/30,192/30, 185/30,186/30)
       self.fixtureDefs[i] = {
          shape = self.shapes[i],
          friction = 0.5,
@@ -60,22 +61,6 @@ function EasyPolygon:init(ebox, t)
    self.sprite:setPosition(0,0)
 
    ebox.parent:addChild(self.sprite)
---[[
-   self.sprite = Shape.new()
-   self.sprite:setFillStyle(unpack(fillStyle))
-   self.sprite:setLineStyle(unpack(lineStyle))
-   self.sprite:beginPath()
-   self.sprite:lineTo(-self.width/2*ebox.scale, -self.height/2*ebox.scale)
-   self.sprite:lineTo( self.width/2*ebox.scale, -self.height/2*ebox.scale)
-   self.sprite:lineTo( self.width/2*ebox.scale,  self.height/2*ebox.scale)
-   self.sprite:lineTo(-self.width/2*ebox.scale,  self.height/2*ebox.scale)
-   self.sprite:closePath()
-   self.sprite:endPath()
-   self.sprite.body = self.body
-   self.sprite:setPosition(t.x*ebox.scale, t.y*ebox.scale)
-
-   ebox.parent:addChild(self.sprite)
---]]
 
    return self
 end

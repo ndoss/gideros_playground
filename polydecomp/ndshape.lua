@@ -1,16 +1,4 @@
---[[ ==============================================================================
-TODO
-  - add rounded rectangle to class - why are rounded rects jagged?
-  - make sure currentpoint and firstpoint are always set when drawing
-  - add comments/documentation
-  - add examples
-          https://developer.mozilla.org/samples/canvas-tutorial/2_4_canvas_arc.html
-          https://developer.mozilla.org/samples/canvas-tutorial/2_7_canvas_combined.html
-          https://developer.mozilla.org/en/Canvas_tutorial/Drawing_shapes
-  -  add generic polygon
-  -  create simple line/fill style functions
--- ================================================================================]]
-
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
 
 --[[ ==============================================================================
    Bezier curve code - from http://www.giderosmobile.com/forum/discussion/461#Item_4
