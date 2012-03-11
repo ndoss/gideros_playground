@@ -1,3 +1,4 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
 
 Water = Core.class(NdShape)
 function Water:init(t)

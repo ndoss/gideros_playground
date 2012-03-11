@@ -1,3 +1,4 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
 
 -- Create the water and update it periodically
 local bins = 20
