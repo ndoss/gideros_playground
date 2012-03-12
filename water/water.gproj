@@ -4,7 +4,6 @@
  </properties>
  <file source="ndshape.lua"/>
  <file source="water.lua"/>
- <file source="easyshape.lua"/>
  <file source="water.jpg"/>
  <file source="main.lua"/>
 </project>
