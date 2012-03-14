@@ -1,3 +1,4 @@
+-- License - http://creativecommons.org/publicdomain/zero/1.0/
 
 -- --------------------------------------------------------------------------------
 require("box2d")
@@ -222,39 +223,44 @@ function EasyBox2d:createStageWalls(t)
 end
 
 -- --------------------------------------------------------------------------------
-function EasyBox2d:mouseDrag()
+function EasyBox2d:onMouseDown(event)
+   local x = event.x/self.scale
+   local y = event.y/self.scale
+   local fixtures = self.w:queryAABB(x - 0.00001, y - 0.00001, x + 0.00001, y + 0.00001)
+   if #fixtures > 0 then
+      local body = fixtures[1]:getBody()
+      local jd   = b2.createMouseJointDef(self.ground, body, x, y, 100000)
+      self.mouseJoint = self.w:createJoint(jd)
+   end
+end
+function EasyBox2d:onMouseMove(event)
+   if self.mouseJoint then
+      self.mouseJoint:setTarget(event.x/self.scale, event.y/self.scale)
+   end
+end
+function EasyBox2d:onMouseUp(event)
+   if self.mouseJoint then
+      self.w:destroyJoint(self.mouseJoint)
+      self.mouseJoint = nil
+   end
+end
+
+function EasyBox2d:mouseDrag(flag)
 
    -- Deal w/ mouse events
    self.mouseJoint = nil
 
-   local function onMouseDown(event)
-      local x = event.x/self.scale
-      local y = event.y/self.scale
-      local fixtures = self.w:queryAABB(x - 0.00001, y - 0.00001, x + 0.00001, y + 0.00001)
-      if #fixtures > 0 then
-         local body = fixtures[1]:getBody()
-         local jd   = b2.createMouseJointDef(self.ground, body, x, y, 100000)
-         self.mouseJoint = self.w:createJoint(jd)
-      end
-
+   if flag then
+      self.parent:addEventListener(Event.MOUSE_DOWN, self.onMouseDown, self)
+      self.parent:addEventListener(Event.MOUSE_MOVE, self.onMouseMove, self)
+      self.parent:addEventListener(Event.MOUSE_UP, self.onMouseUp, self)
+   else
+      self.parent:removeEventListener(Event.MOUSE_DOWN, self.onMouseDown, self)
+      self.parent:removeEventListener(Event.MOUSE_MOVE, self.onMouseMove, self)
+      self.parent:removeEventListener(Event.MOUSE_UP, self.onMouseUp, self)
    end
-   self.parent:addEventListener(Event.MOUSE_DOWN, onMouseDown)
-   
-   local function onMouseMove(event)
-      if self.mouseJoint then
-         self.mouseJoint:setTarget(event.x/self.scale, event.y/self.scale)
-      end
-   end
-   self.parent:addEventListener(Event.MOUSE_MOVE, onMouseMove)
-
-   local function onMouseUp(event)
-      if self.mouseJoint then
-         self.w:destroyJoint(self.mouseJoint)
-         self.mouseJoint = nil
-      end
-   end
-   self.parent:addEventListener(Event.MOUSE_UP, onMouseUp)
 end
+
 
 function EasyBox2d:defaultParams(params)
    if not params then

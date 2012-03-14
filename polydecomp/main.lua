@@ -1,11 +1,15 @@
 -- License - http://creativecommons.org/publicdomain/zero/1.0/
 
+-- STATIC/DYNAMIC
+-- EDGES
+-- JOINTS
+-- DELETE
 
 -- Change this to set how much simplification is done
-delta = 50      --  1e-6 = very little simplification,  200 = lots of simplification
+delta = 25      --  1e-6 = very little simplification,  200 = lots of simplification
 
 -- Change this to set how often points are added to the line while drawing
-pointDelta = 100 
+pointDelta = 25 
 
 
 -- 
@@ -232,6 +236,36 @@ function getIntersectionPoint(p1, p2, q1, q2)
    end
 end
 
+-- Calculates the intersection between two line segments.
+--   p1 - The start vertex of the first line segment.
+--   p2 - The end vertex of the first line segment.
+--   q1 - The start vertex of the second line segment.
+--   q2 - The end vertex of the second line segment.
+-- Returns true if the two line segments intersect
+function segmentsIntersect(p1, p2, q1, q2)
+   local dx = p2.x - p1.x;
+   local dy = p2.y - p1.y;
+   local da = q2.x - q1.x;
+   local db = q2.y - q1.y;
+
+   -- segments are parallel
+   if (da*dy - db*dx) == 0 then
+      return false
+   end
+
+   local s = (dx * (q1.y - p1.y) + dy * (p1.x - q1.x)) / (da * dy - db * dx)
+   local t = (da * (p1.y - q1.y) + db * (q1.x - p1.x)) / (db * dx - da * dy)
+   
+   return (s>=0 and s<=1 and t>=0 and t<=1)
+end
+
+
+--        l1       l2        l3
+-- 232,14   232,25    231,35    227,45
+
+--       end
+-- 206,47   202,57
+
 --
 function distanceSquared(a, b)
    local dx = a.x - b.x
@@ -263,7 +297,7 @@ function decompose(vertices)
    local maxValue = 5.6e300
    
    level = level + 1
-   if level > 50 then
+   if level > 100 then
       print("MAX LEVEL REACHED!")
       level = level - 1
       return
@@ -453,7 +487,7 @@ end
 
 cs = NdShape.new()
 stage:addChild(cs)
-cs:setLineStyle(2)
+cs:setLineStyle(3)
 
 function color(i)
    local colors = {
@@ -473,17 +507,7 @@ function color(i)
    i = ((i-1)%#colors)+1
    return colors[i]
 end
-
 colorIndex = 1
-function drawPath(cs,p)
-   cs:setFillStyle(Shape.SOLID, color(colorIndex), 0.5)
-   cs:setLineStyle(2,0x000000)
-   cs:beginPath()
-   cs:xyPath(p)
-   cs:closePath()
-   cs:endPath()
-   colorIndex = colorIndex + 1
-end
 
 
 sim = EasyBox2d.new{stage, debug=false}
@@ -491,58 +515,100 @@ sim:createStageWalls{top=false, bottom=true, wallWidth=0.2}
 sim:start()
 
 -- Quick & dirty polygon drawing
-local cs = nil
-local lastcs = nil
-path = {}
-lastEvent = nil
+cs = NdShape.new()
+local path = {}
+local lastEvent = nil
+local lineOk = true
 
-stage:addEventListener(Event.MOUSE_DOWN, 
-   function(event) 
-      cs = NdShape.new()
-      cs:setLineStyle(2)
-      cs:moveTo(event.x,event.y)
+function lineIsOk(path)
+   if #path < 5 then
+      return true
+   end
+   for i=1,(#path-3) do
+      if segmentsIntersect(
+         {x=path[i][1],       y=path[i][2]}, 
+         {x=path[i+1][1],     y=path[i+1][2]}, 
+         {x=path[#path-1][1], y=path[#path-1][2]},
+         {x=path[#path][1],   y=path[#path][2]}) then
+         return false
+      end
+   end
+   
+   return true
+end
+
+local handleMouseDown = function(event) 
+   cs:setLineStyle(3, 0x000000)
+   cs:moveTo(event.x,event.y)
+   table.insert(path, {event.x, event.y})
+   stage:addChild(cs)
+   lastEvent = { x=event.x, y=event.y }
+   lineOk = true
+end
+
+local handleMouseUp = function(event) 
+   if lineOk and #path > 2 then
+      -- move the first point to the end to check the wraparound case
+      table.insert(path, path[1])
+      table.remove(path, 1)
+      
+      local ok = lineIsOk(path)
+      if ok then
+         table.remove(path, #path)
+         v = convexPartition(toVectors(path))
+         sim:addPolygon{x=0, y=0, outline=path, polys=toPointLists(v,1/30), 
+                        fillColor=color(colorIndex), fillAlpha=0.5,
+                        lineWidth=3, lineAlpha=1}
+         colorIndex = colorIndex + 1
+      end
+   end
+   cs:clear()
+   path = {}
+   lastEvent=nil
+end
+
+local handleMouseMove = function(event) 
+   distance = distanceSquared(event, lastEvent)
+   if distance > pointDelta then
       table.insert(path, {event.x, event.y})
-      stage:addChild(cs)
       lastEvent = { x=event.x, y=event.y }
-   end)
-
-stage:addEventListener(Event.MOUSE_UP, 
-   function(event) 
-      cs:lineTo(event.x,event.y)
-      cs:closePath()
-      cs:endPath()
-      table.insert(path, {event.x, event.y})
-      cs:clear()
-      
-      v = convexPartition(toVectors(path))
-      if lastcs then
-         lastcs:removeFromParent()
+      if not lineIsOk(path) then
+         lineOk = false
+         cs:setLineStyle(3, 0xff0000)
       end
-      for n,p in ipairs(v) do
-         drawPath(cs,p)
-      end
-
-      sim:addPolygon{x=0, y=0, outline=path, polys=toPointLists(v,1/30), 
-                     fillColor=color(colorIndex), fillAlpha=0.5,
-                     lineWidth=2, lineAlpha=1}
       
-      lastcs = cs
-      cs = nil
-      path = {}
-      lastEvent=nil
-      
-   end)
-
-stage:addEventListener(Event.MOUSE_MOVE, 
-   function(event) 
       cs:lineTo(event.x,event.y)
       cs:endPath()
       cs:beginPath()
       cs:moveTo(event.x,event.y)
-      
-      distance = distanceSquared(event, lastEvent)
-      if distance > pointDelta then
-         table.insert(path, {event.x, event.y})
-         lastEvent = { x=event.x, y=event.y }
-      end
-   end)
+   end
+end
+
+
+
+local width  = application:getContentWidth()
+local height = application:getContentHeight()
+
+button = CartoonCaption.new{ parent=stage, x=width-20, y=20, scale=0.1, fillColor=0x4444ff }
+
+stage:addEventListener(Event.MOUSE_DOWN, handleMouseDown)
+stage:addEventListener(Event.MOUSE_UP, handleMouseUp)
+stage:addEventListener(Event.MOUSE_MOVE, handleMouseMove)
+
+local draw = true
+
+function toggle()
+   if draw then
+      stage:removeEventListener(Event.MOUSE_DOWN, handleMouseDown)
+      stage:removeEventListener(Event.MOUSE_UP, handleMouseUp)
+      stage:removeEventListener(Event.MOUSE_MOVE, handleMouseMove)
+      sim:mouseDrag(true)
+   else
+      stage:addEventListener(Event.MOUSE_DOWN, handleMouseDown)
+      stage:addEventListener(Event.MOUSE_UP, handleMouseUp)
+      stage:addEventListener(Event.MOUSE_MOVE, handleMouseMove)
+      sim:mouseDrag(false)
+   end
+   draw = not draw
+end
+button:addEventListener("click", toggle)

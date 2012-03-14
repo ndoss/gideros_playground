@@ -2,7 +2,7 @@
 
 -- Create the water and update it periodically
 local bins = 20
-local layers = 3
+local layers = 5
 local texture = Texture.new("water.jpg", true)
 
 -- Add the water
