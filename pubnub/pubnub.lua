@@ -103,7 +103,9 @@ function pubnub.new(init)
                                     timer.performWithDelay( 1000, substabizel )
                                     return errorback("Lost Network Connection")
                                 end
-                                timer.performWithDelay( 10, substabizel )
+								local timer = Timer.new(10,1)
+								timer:addEventListener(Event.TIMER, substabizel)
+                                timer:start()
                             end
                         })
                     end
