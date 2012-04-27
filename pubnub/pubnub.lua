@@ -100,21 +100,22 @@ function pubnub.new(init)
                         return self:time({
                             callback = function(time)
                                 if not time then
-                                    timer.performWithDelay( 1000, substabizel )
-                                    return errorback("Lost Network Connection")
+                                   local timer = Timer.new(1000,1)
+                                   timer:addEventListener(Event.TIMER, substabizel)
+                                   timer:start()
+                                   return errorback("Lost Network Connection")
                                 end
-								local timer = Timer.new(10,1)
-								timer:addEventListener(Event.TIMER, substabizel)
+				local timer = Timer.new(10,1)
+                                timer:addEventListener(Event.TIMER, substabizel)
                                 timer:start()
                             end
                         })
                     end
 
                     timetoken = response[2]
-                    --timer.performWithDelay( 1, substabizel )
-					local timer = Timer.new(1, 1)
-					timer:addEventListener(Event.TIMER, substabizel)
-					timer:start()
+                    local timer = Timer.new(1, 1)
+                    timer:addEventListener(Event.TIMER, substabizel)
+                    timer:start()
 					
                     for i, message in ipairs(response[1]) do
                         callback(message)
