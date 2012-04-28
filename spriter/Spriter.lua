@@ -120,9 +120,11 @@ local function color_transform(col, alpha, sprite)
 end
 
 -- ===================================================================================
--- Returns movie clip with specified animation or nil if named animation doesn't exist
+-- Returns timeline that can be used to build a MovieClip
 -- ===================================================================================
-function Spriter:movieClip(name)
+function Spriter:timeline(name, framesPerSecond)
+   -- Default to 60 frames per second
+   framesPerSecond = framesPerSecond or 60
 
    -- Find the animation by name
    local anim = table_find(name, self.info.char.anim)
@@ -148,21 +150,36 @@ function Spriter:movieClip(name)
          local height = bitmap:getHeight()
 
          color_transform(sprite.color, sprite.opacity/100, bitmap)
-         bitmap:setScale(sprite.width/width, sprite.height/height)
+         bitmap:setScale(sprite.width/width * (-2*sprite.xflip + 1), sprite.height/height * (-2*sprite.yflip + 1))
          bitmap:setPosition(sprite.x-left, sprite.y-top)
-         --bitmap:setRotation(sprite.angle / (180*math.pi)) --TODO: Fix .. seems to make things worse?
+         bitmap:setRotation(360-sprite.angle)
          parent:addChild(bitmap)
-         -- TODO: handle xflip, yflip
       end
 
       -- Add the frame to the timeline
-      local stopTime = startTime + frame.duration * 480/1000 + 1 --TODO: Fix this
+      local stopTime = startTime + math.ceil(frame.duration * framesPerSecond / 1000) + 1
       table.insert(timeline, { startTime, stopTime, parent })
-      startTime = stopTime - 1 
+      startTime = stopTime + 1
    end
+
+   return timeline
+end
+
+-- ===================================================================================
+-- Returns movie clip with specified animation or nil if named animation doesn't exist
+-- ===================================================================================
+function Spriter:movieClip(name, looping, framesPerSecond)
+
+   -- Build the timeline
+   local timeline = self:timeline(name,framesPerSecond)
 
    -- Return the movie clip
    local mc = MovieClip.new(timeline)
-   mc:setGotoAction(startTime - 1, 1)
+
+   -- Handle looping
+   if looping then
+      local lastTime = timeline[#timeline][2]
+      mc:setGotoAction(lastTime, 1)
+   end
    return mc
 end
