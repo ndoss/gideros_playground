@@ -1,0 +1,12 @@
+<project>
+ <properties autorotation="0" fps="60" scaleMode="2" iosDevice="0" xcodeVersion="0" packageName="com.yourdomain.yourapp" logicalHeight="480" logicalWidth="320" retinaDisplay="0" assetsOnly="0" orientation="0" architecture="0">
+  <imageScales/>
+ </properties>
+ <file source="Spriter.lua"/>
+ <file source="example_hero.png"/>
+ <file source="example_hero.txt"/>
+ <file source="BetaFormatHero.SCML"/>
+ <file source="inspect.lua"/>
+ <file source="xml.lua"/>
+ <file source="main.lua"/>
+</project>

@@ -1,0 +1,73 @@
+<library>
+ <properties forceSquare="0" alphaThreshold="0" extrude="0" padding="1" showUnusedAreas="0" removeAlphaBorder="0"/>
+ <folder name="p1_arms_0">
+  <file file="p1_arms_0/arm_0.png"/>
+  <file file="p1_arms_0/arm_b.png"/>
+ </folder>
+ <folder name="p1_boots_0">
+  <file file="p1_boots_0/foot_0.png"/>
+  <file file="p1_boots_0/foot_2.png"/>
+  <file file="p1_boots_0/foot_2_bent.png"/>
+  <file file="p1_boots_0/foot_a.png"/>
+  <file file="p1_boots_0/foot_a_bent.png"/>
+  <file file="p1_boots_0/knee_0.png"/>
+  <file file="p1_boots_0/knee_1.png"/>
+  <file file="p1_boots_0/knee_a.png"/>
+  <file file="p1_boots_0/knee_b.png"/>
+ </folder>
+ <folder name="p1_chest_0">
+  <file file="p1_chest_0/abs_0.png"/>
+  <file file="p1_chest_0/abs_1.png"/>
+  <file file="p1_chest_0/chest_0.png"/>
+  <file file="p1_chest_0/chest_1.png"/>
+ </folder>
+ <folder name="p1_forearms_0">
+  <file file="p1_forearms_0/fist.png"/>
+  <file file="p1_forearms_0/fist_0.png"/>
+  <file file="p1_forearms_0/forearm_0.png"/>
+  <file file="p1_forearms_0/forearm_1.png"/>
+  <file file="p1_forearms_0/forearm_3.png"/>
+  <file file="p1_forearms_0/forearm_a.png"/>
+  <file file="p1_forearms_0/forearm_b.png"/>
+  <file file="p1_forearms_0/forearm_hit.png"/>
+  <file file="p1_forearms_0/forearm_nohand.png"/>
+  <file file="p1_forearms_0/hand_a.png"/>
+  <file file="p1_forearms_0/swordhand_0.png"/>
+ </folder>
+ <folder name="p1_head_0">
+  <file file="p1_head_0/hair_walk_0.png"/>
+  <file file="p1_head_0/hair_walk_1.png"/>
+  <file file="p1_head_0/hair_walk_2.png"/>
+  <file file="p1_head_0/head_0.png"/>
+  <file file="p1_head_0/head_0a.png"/>
+  <file file="p1_head_0/head_1.png"/>
+  <file file="p1_head_0/head_1a.png"/>
+  <file file="p1_head_0/head_HIT.png"/>
+  <file file="p1_head_0/head_HIT_0.png"/>
+  <file file="p1_head_0/idle_blink_0.png"/>
+  <file file="p1_head_0/idle_blink_1.png"/>
+  <file file="p1_head_0/idle_hair_0.png"/>
+  <file file="p1_head_0/idle_hair_1.png"/>
+  <file file="p1_head_0/idle_hair_2.png"/>
+ </folder>
+ <folder name="p1_pants_0">
+  <file file="p1_pants_0/leg_0.png"/>
+  <file file="p1_pants_0/leg_1.png"/>
+  <file file="p1_pants_0/leg_a.png"/>
+  <file file="p1_pants_0/leg_b.png"/>
+  <file file="p1_pants_0/pelvis_0.png"/>
+  <file file="p1_pants_0/pelvis_1.png"/>
+ </folder>
+ <folder name="p1_sheild_0">
+  <file file="p1_sheild_0/shield_a.png"/>
+  <file file="p1_sheild_0/shield_b.png"/>
+ </folder>
+ <folder name="p1_shoulders_0">
+  <file file="p1_shoulders_0/shoulder_0.png"/>
+  <file file="p1_shoulders_0/shoulder_a.png"/>
+  <file file="p1_shoulders_0/shoulder_b.png"/>
+ </folder>
+ <folder name="p1_sword_0">
+  <file file="p1_sword_0/sword_0.png"/>
+ </folder>
+</library>
