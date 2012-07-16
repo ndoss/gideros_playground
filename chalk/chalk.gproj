@@ -1,0 +1,16 @@
+<project>
+ <properties autorotation="0" fps="60" scaleMode="5" iosDevice="0" xcodeVersion="0" packageName="com.yourdomain.yourapp" logicalHeight="480" logicalWidth="320" retinaDisplay="0" assetsOnly="0" orientation="0" architecture="0">
+  <imageScales/>
+ </properties>
+ <file source="easybox.lua"/>
+ <file source="easyedge.lua"/>
+ <file source="easycircle.lua"/>
+ <file source="easybox2d.lua"/>
+ <file source="chalk5.png"/>
+ <file source="chalk4.png"/>
+ <file source="chalk3.png"/>
+ <file source="chalk2.png"/>
+ <file source="chalk1.png"/>
+ <file source="board.jpg"/>
+ <file source="main.lua"/>
+</project>
