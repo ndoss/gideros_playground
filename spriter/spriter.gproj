@@ -6,7 +6,6 @@
  <file source="example_hero.png"/>
  <file source="example_hero.txt"/>
  <file source="BetaFormatHero.SCML"/>
- <file source="inspect.lua"/>
  <file source="xml.lua"/>
  <file source="main.lua"/>
 </project>
